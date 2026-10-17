@@ -1,0 +1,1349 @@
+{
+  "created_utc": "2026-10-10T08:13:33.102133+00:00",
+  "validation": {
+    "folds": 5,
+    "random_state": 42,
+    "smoking_split": "StratifiedKFold(shuffle=True)",
+    "gamma_split": "KFold(shuffle=True)",
+    "selection_note": "Exploratory model selection on these folds; the folds are not an untouched final estimate. The saved baseline used the same folds."
+  },
+  "saved_baseline": {
+    "Smoking_AUC": 0.94672,
+    "Gamma_GT_RMSLE": 0.28553,
+    "Combined_OOF_score": 0.66351
+  },
+  "feature_engineering": {
+    "missingness_flags": "raw source columns with training missing values",
+    "lab_features": [
+      "AST_ALT_Ratio",
+      "POC_GGT_ALT_Ratio",
+      "Triglyceride_HDL_Ratio",
+      "Urine_Cotinine_Creatinine_Ratio",
+      "Waist_Height_Ratio",
+      "Non_HDL_Cholesterol"
+    ]
+  },
+  "candidate_results": {
+    "Smoking": [
+      {
+        "name": "CatBoost baseline (saved five-fold OOF)",
+        "model": "CatBoost",
+        "feature_set": "original",
+        "params": {
+          "iterations": 563,
+          "depth": 6,
+          "learning_rate": 0.04
+        },
+        "metric": 0.94672,
+        "fold_mean": 0.94673,
+        "fold_std": 0.00271
+      },
+      {
+        "name": "CatBoost baseline settings + engineered features",
+        "model": "CatBoost",
+        "feature_set": "engineered",
+        "params": {
+          "iterations": 563,
+          "depth": 6,
+          "learning_rate": 0.04,
+          "l2_leaf_reg": 3.0
+        },
+        "metric": 0.9471825634567956,
+        "fold_mean": 0.9472001351022247,
+        "fold_std": 0.0029456430135962057
+      },
+      {
+        "name": "CatBoost tuned depth 5",
+        "model": "CatBoost",
+        "feature_set": "engineered",
+        "params": {
+          "iterations": 900,
+          "depth": 5,
+          "learning_rate": 0.03,
+          "l2_leaf_reg": 5.0
+        },
+        "metric": 0.9479822497488944,
+        "fold_mean": 0.9478837661931699,
+        "fold_std": 0.0034858606893822955
+      },
+      {
+        "name": "CatBoost tuned depth 7",
+        "model": "CatBoost",
+        "feature_set": "engineered",
+        "params": {
+          "iterations": 1000,
+          "depth": 7,
+          "learning_rate": 0.03,
+          "l2_leaf_reg": 7.0
+        },
+        "metric": 0.9465413634547257,
+        "fold_mean": 0.9465073076839621,
+        "fold_std": 0.003283002661658942
+      },
+      {
+        "name": "Tuned XGBoost + engineered features",
+        "model": "XGBoost",
+        "feature_set": "engineered",
+        "params": {
+          "n_estimators": 900,
+          "max_depth": 4,
+          "learning_rate": 0.03,
+          "min_child_weight": 5,
+          "subsample": 0.85,
+          "colsample_bytree": 0.85,
+          "reg_alpha": 0.05,
+          "reg_lambda": 5.0,
+          "tree_method": "hist",
+          "enable_categorical": true,
+          "n_jobs": -1
+        },
+        "metric": 0.935425505282405,
+        "fold_mean": 0.9354993461946289,
+        "fold_std": 0.004156703736394375
+      }
+    ],
+    "Gamma_GT": [
+      {
+        "name": "CatBoost baseline (saved five-fold OOF)",
+        "model": "CatBoost",
+        "feature_set": "original",
+        "params": {
+          "iterations": 715,
+          "depth": 6,
+          "learning_rate": 0.04
+        },
+        "metric": 0.28553,
+        "fold_mean": 0.28548,
+        "fold_std": 0.00587
+      },
+      {
+        "name": "CatBoost baseline settings + engineered features",
+        "model": "CatBoost",
+        "feature_set": "engineered",
+        "params": {
+          "iterations": 715,
+          "depth": 6,
+          "learning_rate": 0.04,
+          "l2_leaf_reg": 3.0
+        },
+        "metric": 0.2854893364017422,
+        "fold_mean": 0.2854466781989976,
+        "fold_std": 0.005489070893772854
+      },
+      {
+        "name": "CatBoost tuned depth 5",
+        "model": "CatBoost",
+        "feature_set": "engineered",
+        "params": {
+          "iterations": 1000,
+          "depth": 5,
+          "learning_rate": 0.03,
+          "l2_leaf_reg": 5.0
+        },
+        "metric": 0.2857589519703567,
+        "fold_mean": 0.2857160025909925,
+        "fold_std": 0.005504010929352409
+      },
+      {
+        "name": "CatBoost tuned depth 7",
+        "model": "CatBoost",
+        "feature_set": "engineered",
+        "params": {
+          "iterations": 1200,
+          "depth": 7,
+          "learning_rate": 0.025,
+          "l2_leaf_reg": 7.0
+        },
+        "metric": 0.286359795776705,
+        "fold_mean": 0.286310217511374,
+        "fold_std": 0.0059262805522844325
+      },
+      {
+        "name": "Tuned XGBoost + engineered features",
+        "model": "XGBoost",
+        "feature_set": "engineered",
+        "params": {
+          "n_estimators": 900,
+          "max_depth": 4,
+          "learning_rate": 0.03,
+          "min_child_weight": 5,
+          "subsample": 0.85,
+          "colsample_bytree": 0.85,
+          "reg_alpha": 0.05,
+          "reg_lambda": 5.0,
+          "tree_method": "hist",
+          "enable_categorical": true,
+          "n_jobs": -1
+        },
+        "metric": 0.30299528347569865,
+        "fold_mean": 0.3029580590236726,
+        "fold_std": 0.005284222236423519
+      }
+    ]
+  },
+  "selected": {
+    "Smoking": {
+      "name": "CatBoost tuned depth 5",
+      "model": "CatBoost",
+      "feature_set": "engineered",
+      "params": {
+        "iterations": 900,
+        "depth": 5,
+        "learning_rate": 0.03,
+        "l2_leaf_reg": 5.0
+      },
+      "metric": 0.9479822497488944,
+      "fold_mean": 0.9478837661931699,
+      "fold_std": 0.0034858606893822955
+    },
+    "Gamma_GT": {
+      "name": "CatBoost baseline settings + engineered features",
+      "model": "CatBoost",
+      "feature_set": "engineered",
+      "params": {
+        "iterations": 715,
+        "depth": 6,
+        "learning_rate": 0.04,
+        "l2_leaf_reg": 3.0
+      },
+      "metric": 0.2854893364017422,
+      "fold_mean": 0.2854466781989976,
+      "fold_std": 0.005489070893772854,
+      "dropped_features": [
+        "AST_Was_Missing",
+        "Exhaled_CO_ppm_Was_Missing",
+        "Eyesight_L_Blind",
+        "Eyesight_L_Was_Missing",
+        "Eyesight_R_Blind",
+        "Eyesight_R_Was_Missing",
+        "Family_History_CVD",
+        "Family_History_CVD_Was_Missing",
+        "Household_Smoke_Exposure",
+        "LDL_Was_Missing",
+        "Non_HDL_Cholesterol",
+        "Serum_Creatinine_Was_Missing",
+        "Sleep_Hours_Avg_Was_Missing",
+        "Triglyceride_Was_Missing",
+        "Urine_Cotinine_Creatinine_Ratio",
+        "Urine_Cotinine_ng_mL_Was_Missing",
+        "Urine_Creatinine_Was_Missing",
+        "Urine_EtG_ng_mL_Was_Missing",
+        "Urine_Panel_Missing",
+        "Urine_Protein",
+        "Urine_Protein_Was_Missing",
+        "Weight_kg"
+      ],
+      "feature_selection": {
+        "method": "fold-1 permutation importance, validated on folds 2-5",
+        "importance_fold": 1,
+        "evaluation_folds": [
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    "combined_oof_score": 0.6648148857320901
+  },
+  "submission": {
+    "file": "C:\\Users\\\u064a\u062b\u0645\u0645\\Desktop\\AI_Hackathon\\dsc-modeling-hackathon-ml-arena\\submission.csv",
+    "rows": 6399,
+    "smoking_prediction_min": 0.0001948476912035,
+    "smoking_prediction_max": 0.9990637995652956,
+    "gamma_gt_prediction_min": 5.366539474898982,
+    "gamma_gt_prediction_max": 471.1195848368039,
+    "smoking_prediction_type": "positive-class probability",
+    "smoking_prediction_method": "CatBoostClassifier.predict_proba[:, 1]",
+    "generated_utc": "2026-10-10T09:34:38.401935+00:00",
+    "gamma_gt_prediction_method": "POC_Batch mean log-residual correction with tuned HGB post-correction (75% adjustment scale)"
+  },
+  "ggt_batch_correction": {
+    "created_utc": "2026-10-10T09:34:38.401329+00:00",
+    "batch_correction": "Mean training-fold residual on log1p(Gamma_GT) - log1p(POC_GGT) for each observed POC_Batch.",
+    "fallback": "HistGradientBoostingRegressor predicts the log-target for rows without usable POC, and predicts the POC residual when POC exists but the batch correction is unavailable.",
+    "fallback_model": {
+      "learning_rate": 0.05,
+      "max_iter": 300,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 20,
+      "l2_regularization": 1.0
+    },
+    "post_correction": {
+      "model": "HistGradientBoostingRegressor",
+      "target": "POC log-residual minus leave-one-out batch mean residual",
+      "baseline_strategy": "baseline HGB leave-one-out post-correction",
+      "tuned_parameters": {
+        "learning_rate": 0.05,
+        "max_iter": 400,
+        "max_leaf_nodes": 7,
+        "min_samples_leaf": 40,
+        "l2_regularization": 1.0,
+        "post_correction_scale": 0.75
+      },
+      "independent_split_checks": [
+        {
+          "random_state": 7,
+          "baseline_rmsle": 0.1436314536035888,
+          "tuned_rmsle": 0.1398265842375327
+        },
+        {
+          "random_state": 123,
+          "baseline_rmsle": 0.14204450348875952,
+          "tuned_rmsle": 0.1383339939199473
+        }
+      ]
+    },
+    "cross_validation": {
+      "folds": 5,
+      "random_state": 42,
+      "fold_metrics": [
+        {
+          "fold": 1,
+          "valid_rows": 1801,
+          "batch_corrected_rows": 1659,
+          "batch_corrected_share": 0.9211549139367018,
+          "direct_hgb_rmsle": 0.29849140405589586,
+          "batch_shrinkage_0_direct_fallback_rmsle": 0.14474744280635818,
+          "batch_shrinkage_0.5_direct_fallback_rmsle": 0.15571040494073196,
+          "batch_shrinkage_1_direct_fallback_rmsle": 0.1798296642335598,
+          "batch_shrinkage_2_direct_fallback_rmsle": 0.23313486168292322,
+          "batch_shrinkage_4_direct_fallback_rmsle": 0.32087385728443135,
+          "batch_shrinkage_0_residual_fallback_rmsle": 0.14474744280635818,
+          "batch_shrinkage_0.5_residual_fallback_rmsle": 0.15571040494073196,
+          "batch_shrinkage_1_residual_fallback_rmsle": 0.1798296642335598,
+          "batch_shrinkage_2_residual_fallback_rmsle": 0.23313486168292322,
+          "batch_shrinkage_4_residual_fallback_rmsle": 0.32087385728443135,
+          "batch_hgb_post_correction_baseline_rmsle": 0.14072327965524012,
+          "batch_hgb_post_correction_tuned_rmsle": 0.14081294440971462
+        },
+        {
+          "fold": 2,
+          "valid_rows": 1801,
+          "batch_corrected_rows": 1667,
+          "batch_corrected_share": 0.9255968906163242,
+          "direct_hgb_rmsle": 0.30526882252186055,
+          "batch_shrinkage_0_direct_fallback_rmsle": 0.1406114432728355,
+          "batch_shrinkage_0.5_direct_fallback_rmsle": 0.1549965964451695,
+          "batch_shrinkage_1_direct_fallback_rmsle": 0.18297128201987659,
+          "batch_shrinkage_2_direct_fallback_rmsle": 0.24192522763416954,
+          "batch_shrinkage_4_direct_fallback_rmsle": 0.33583849991806075,
+          "batch_shrinkage_0_residual_fallback_rmsle": 0.1406114432728355,
+          "batch_shrinkage_0.5_residual_fallback_rmsle": 0.1549965964451695,
+          "batch_shrinkage_1_residual_fallback_rmsle": 0.18297128201987659,
+          "batch_shrinkage_2_residual_fallback_rmsle": 0.24192522763416954,
+          "batch_shrinkage_4_residual_fallback_rmsle": 0.33583849991806075,
+          "batch_hgb_post_correction_baseline_rmsle": 0.13518983961555353,
+          "batch_hgb_post_correction_tuned_rmsle": 0.13514554425607214
+        },
+        {
+          "fold": 3,
+          "valid_rows": 1800,
+          "batch_corrected_rows": 1669,
+          "batch_corrected_share": 0.9272222222222222,
+          "direct_hgb_rmsle": 0.2947805758388544,
+          "batch_shrinkage_0_direct_fallback_rmsle": 0.13808753098541737,
+          "batch_shrinkage_0.5_direct_fallback_rmsle": 0.1517923402336665,
+          "batch_shrinkage_1_direct_fallback_rmsle": 0.17880554689546543,
+          "batch_shrinkage_2_direct_fallback_rmsle": 0.23604959449722743,
+          "batch_shrinkage_4_direct_fallback_rmsle": 0.3273965634364278,
+          "batch_shrinkage_0_residual_fallback_rmsle": 0.13808753098541737,
+          "batch_shrinkage_0.5_residual_fallback_rmsle": 0.1517923402336665,
+          "batch_shrinkage_1_residual_fallback_rmsle": 0.17880554689546543,
+          "batch_shrinkage_2_residual_fallback_rmsle": 0.23604959449722743,
+          "batch_shrinkage_4_residual_fallback_rmsle": 0.3273965634364278,
+          "batch_hgb_post_correction_baseline_rmsle": 0.13478215137412675,
+          "batch_hgb_post_correction_tuned_rmsle": 0.13372847594932918
+        },
+        {
+          "fold": 4,
+          "valid_rows": 1800,
+          "batch_corrected_rows": 1655,
+          "batch_corrected_share": 0.9194444444444444,
+          "direct_hgb_rmsle": 0.29968994576604485,
+          "batch_shrinkage_0_direct_fallback_rmsle": 0.13969216268746826,
+          "batch_shrinkage_0.5_direct_fallback_rmsle": 0.15029324178435916,
+          "batch_shrinkage_1_direct_fallback_rmsle": 0.17507142566893502,
+          "batch_shrinkage_2_direct_fallback_rmsle": 0.22965512764613294,
+          "batch_shrinkage_4_direct_fallback_rmsle": 0.31862855458984823,
+          "batch_shrinkage_0_residual_fallback_rmsle": 0.13979790239163198,
+          "batch_shrinkage_0.5_residual_fallback_rmsle": 0.1503915280953352,
+          "batch_shrinkage_1_residual_fallback_rmsle": 0.1751558085892432,
+          "batch_shrinkage_2_residual_fallback_rmsle": 0.2297194611933429,
+          "batch_shrinkage_4_residual_fallback_rmsle": 0.3186749268405252,
+          "batch_hgb_post_correction_baseline_rmsle": 0.13809435688971983,
+          "batch_hgb_post_correction_tuned_rmsle": 0.1366246370538553
+        },
+        {
+          "fold": 5,
+          "valid_rows": 1800,
+          "batch_corrected_rows": 1637,
+          "batch_corrected_share": 0.9094444444444445,
+          "direct_hgb_rmsle": 0.2895360470097978,
+          "batch_shrinkage_0_direct_fallback_rmsle": 0.13839752109377276,
+          "batch_shrinkage_0.5_direct_fallback_rmsle": 0.15270845636420358,
+          "batch_shrinkage_1_direct_fallback_rmsle": 0.18088918574718363,
+          "batch_shrinkage_2_direct_fallback_rmsle": 0.23977538847762522,
+          "batch_shrinkage_4_direct_fallback_rmsle": 0.33259591627568325,
+          "batch_shrinkage_0_residual_fallback_rmsle": 0.13839752109377276,
+          "batch_shrinkage_0.5_residual_fallback_rmsle": 0.15270845636420358,
+          "batch_shrinkage_1_residual_fallback_rmsle": 0.18088918574718363,
+          "batch_shrinkage_2_residual_fallback_rmsle": 0.23977538847762522,
+          "batch_shrinkage_4_residual_fallback_rmsle": 0.33259591627568325,
+          "batch_hgb_post_correction_baseline_rmsle": 0.13751721938390313,
+          "batch_hgb_post_correction_tuned_rmsle": 0.13670656988985652
+        }
+      ],
+      "models": {
+        "direct_hgb": {
+          "pooled_oof_rmsle": 0.297600339305476,
+          "fold_mean_rmsle": 0.29755335903849073,
+          "fold_std_rmsle": 0.005851045353179678,
+          "fold_rmsle": [
+            0.29849140405589586,
+            0.30526882252186055,
+            0.2947805758388544,
+            0.29968994576604485,
+            0.2895360470097978
+          ]
+        },
+        "batch_shrinkage_0_direct_fallback": {
+          "pooled_oof_rmsle": 0.1403282470819769,
+          "fold_mean_rmsle": 0.14030722016917044,
+          "fold_std_rmsle": 0.0026814359539918614,
+          "fold_rmsle": [
+            0.14474744280635818,
+            0.1406114432728355,
+            0.13808753098541737,
+            0.13969216268746826,
+            0.13839752109377276
+          ]
+        },
+        "batch_shrinkage_0.5_direct_fallback": {
+          "pooled_oof_rmsle": 0.15311387174033114,
+          "fold_mean_rmsle": 0.15310020795362617,
+          "fold_std_rmsle": 0.002244574791496783,
+          "fold_rmsle": [
+            0.15571040494073196,
+            0.1549965964451695,
+            0.1517923402336665,
+            0.15029324178435916,
+            0.15270845636420358
+          ]
+        },
+        "batch_shrinkage_1_direct_fallback": {
+          "pooled_oof_rmsle": 0.17953288005521703,
+          "fold_mean_rmsle": 0.1795134209130041,
+          "fold_std_rmsle": 0.0029232665600412316,
+          "fold_rmsle": [
+            0.1798296642335598,
+            0.18297128201987659,
+            0.17880554689546543,
+            0.17507142566893502,
+            0.18088918574718363
+          ]
+        },
+        "batch_shrinkage_2_direct_fallback": {
+          "pooled_oof_rmsle": 0.2361497630975259,
+          "fold_mean_rmsle": 0.23610803998761565,
+          "fold_std_rmsle": 0.004943996355583585,
+          "fold_rmsle": [
+            0.23313486168292322,
+            0.24192522763416954,
+            0.23604959449722743,
+            0.22965512764613294,
+            0.23977538847762522
+          ]
+        },
+        "batch_shrinkage_4_direct_fallback": {
+          "pooled_oof_rmsle": 0.3271333649130055,
+          "fold_mean_rmsle": 0.3270666783008903,
+          "fold_std_rmsle": 0.007368499086868808,
+          "fold_rmsle": [
+            0.32087385728443135,
+            0.33583849991806075,
+            0.3273965634364278,
+            0.31862855458984823,
+            0.33259591627568325
+          ]
+        },
+        "batch_shrinkage_0_residual_fallback": {
+          "pooled_oof_rmsle": 0.14034930087206132,
+          "fold_mean_rmsle": 0.14032836811000318,
+          "fold_std_rmsle": 0.0026757834281361664,
+          "fold_rmsle": [
+            0.14474744280635818,
+            0.1406114432728355,
+            0.13808753098541737,
+            0.13979790239163198,
+            0.13839752109377276
+          ]
+        },
+        "batch_shrinkage_0.5_residual_fallback": {
+          "pooled_oof_rmsle": 0.15313316768581067,
+          "fold_mean_rmsle": 0.15311986521582135,
+          "fold_std_rmsle": 0.002214069750369659,
+          "fold_rmsle": [
+            0.15571040494073196,
+            0.1549965964451695,
+            0.1517923402336665,
+            0.1503915280953352,
+            0.15270845636420358
+          ]
+        },
+        "batch_shrinkage_1_residual_fallback": {
+          "pooled_oof_rmsle": 0.1795493368049489,
+          "fold_mean_rmsle": 0.17953029749706573,
+          "fold_std_rmsle": 0.002891279511074368,
+          "fold_rmsle": [
+            0.1798296642335598,
+            0.18297128201987659,
+            0.17880554689546543,
+            0.1751558085892432,
+            0.18088918574718363
+          ]
+        },
+        "batch_shrinkage_2_residual_fallback": {
+          "pooled_oof_rmsle": 0.23616227458506925,
+          "fold_mean_rmsle": 0.23612090669705768,
+          "fold_std_rmsle": 0.004923043606825132,
+          "fold_rmsle": [
+            0.23313486168292322,
+            0.24192522763416954,
+            0.23604959449722743,
+            0.2297194611933429,
+            0.23977538847762522
+          ]
+        },
+        "batch_shrinkage_4_residual_fallback": {
+          "pooled_oof_rmsle": 0.3271423967716225,
+          "fold_mean_rmsle": 0.3270759527510257,
+          "fold_std_rmsle": 0.007355240409145528,
+          "fold_rmsle": [
+            0.32087385728443135,
+            0.33583849991806075,
+            0.3273965634364278,
+            0.3186749268405252,
+            0.33259591627568325
+          ]
+        },
+        "batch_hgb_post_correction_baseline": {
+          "pooled_oof_rmsle": 0.137278414491459,
+          "fold_mean_rmsle": 0.13726136938370867,
+          "fold_std_rmsle": 0.0024073796779534684,
+          "fold_rmsle": [
+            0.14072327965524012,
+            0.13518983961555353,
+            0.13478215137412675,
+            0.13809435688971983,
+            0.13751721938390313
+          ]
+        },
+        "batch_hgb_post_correction_tuned": {
+          "pooled_oof_rmsle": 0.13662452831986696,
+          "fold_mean_rmsle": 0.13660363431176556,
+          "fold_std_rmsle": 0.0026515038454011327,
+          "fold_rmsle": [
+            0.14081294440971462,
+            0.13514554425607214,
+            0.13372847594932918,
+            0.1366246370538553,
+            0.13670656988985652
+          ]
+        }
+      },
+      "selection_note": "Exploratory model selection on these folds; not an untouched final estimate."
+    },
+    "target_rmsle": 0.08,
+    "target_reached": false,
+    "combined_score_estimate_using_selected_smoking_oof_auc": 0.8124689306456738,
+    "test_prediction_approach": "batch_hgb_post_correction_tuned",
+    "batch_correction_test_rows": 5863,
+    "test_rows": 6399,
+    "test_batch_correction_coverage": 0.9162369120175027,
+    "submission_gamma_gt_min": 5.366539474898982,
+    "submission_gamma_gt_max": 471.1195848368039,
+    "submission_file": "C:\\Users\\\u064a\u062b\u0645\u0645\\Desktop\\AI_Hackathon\\dsc-modeling-hackathon-ml-arena\\submission.csv"
+  },
+  "submission_model_overrides": {
+    "Gamma_GT": {
+      "model": "POC batch correction with Histogram-GB fallback",
+      "validation_rmsle": 0.13662452831986696,
+      "strategy": "batch_hgb_post_correction_tuned"
+    }
+  },
+  "feature_selection": {
+    "created_utc": "2026-10-10T09:01:14.291307+00:00",
+    "method": "Held-out-fold permutation importance on fold 1, followed by full-versus-reduced comparison on folds 2-5.",
+    "importance_fold": 1,
+    "evaluation_folds": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "permutation_repeats": 3,
+    "metric_direction": {
+      "Smoking": "higher AUC is better",
+      "Gamma_GT": "lower RMSLE is better"
+    },
+    "targets": {
+      "Smoking": {
+        "full_feature_count": 63,
+        "reduced_feature_count": 35,
+        "dropped_features": [
+          "ALT_Was_Missing",
+          "AST_Was_Missing",
+          "Alcohol_Units_Week",
+          "Alcohol_Units_Week_Was_Missing",
+          "Eyesight_L",
+          "Eyesight_L_Blind",
+          "Eyesight_L_Was_Missing",
+          "Eyesight_R",
+          "Eyesight_R_Blind",
+          "Eyesight_R_Was_Missing",
+          "HDL",
+          "Hearing_R",
+          "LDL_Was_Missing",
+          "Liver_Echo_Grade",
+          "Liver_Echo_Grade_Was_Missing",
+          "POC_GGT",
+          "POC_GGT_Was_Missing",
+          "Sleep_Hours_Avg_Was_Missing",
+          "Urine_Cotinine_ng_mL_Was_Missing",
+          "Urine_Creatinine_Was_Missing",
+          "Urine_EtG_ng_mL",
+          "Urine_EtG_ng_mL_Was_Missing",
+          "Urine_Panel_Missing",
+          "Urine_Protein",
+          "Urine_Protein_Was_Missing",
+          "Visit_Quarter",
+          "Waist_Height_Ratio",
+          "Waist_cm"
+        ],
+        "permutation_importance": {
+          "Triglyceride": {
+            "mean_metric_degradation": 0.0040876774620431195,
+            "std_metric_degradation": 0.0016531492670563597
+          },
+          "Household_Smoke_Exposure": {
+            "mean_metric_degradation": 0.002082250909236268,
+            "std_metric_degradation": 0.0002532153515727641
+          },
+          "Waist_cm": {
+            "mean_metric_degradation": -6.92751422139241e-05,
+            "std_metric_degradation": 0.00026906441151944093
+          },
+          "Visit_Quarter": {
+            "mean_metric_degradation": -4.7515642415859226e-05,
+            "std_metric_degradation": 4.6918410429262815e-05
+          },
+          "Hemoglobin": {
+            "mean_metric_degradation": 0.0211311387323538,
+            "std_metric_degradation": 0.0037521867236156173
+          },
+          "AST": {
+            "mean_metric_degradation": 0.0007598062072303735,
+            "std_metric_degradation": 0.00025722547376889773
+          },
+          "Cholesterol_Total": {
+            "mean_metric_degradation": 0.0005129024952373884,
+            "std_metric_degradation": 6.497874264689938e-05
+          },
+          "Age": {
+            "mean_metric_degradation": 0.001179897774758169,
+            "std_metric_degradation": 0.0008287725588339133
+          },
+          "LDL": {
+            "mean_metric_degradation": 0.0013823943443063886,
+            "std_metric_degradation": 0.00036098418324190766
+          },
+          "Weight_kg": {
+            "mean_metric_degradation": 0.00025312071193528407,
+            "std_metric_degradation": 0.0002918400778188409
+          },
+          "ALT": {
+            "mean_metric_degradation": 0.0007127346362389616,
+            "std_metric_degradation": 0.00018324121847296878
+          },
+          "Serum_Creatinine": {
+            "mean_metric_degradation": 0.00040010835342766765,
+            "std_metric_degradation": 0.0003954911674112226
+          },
+          "Urine_Protein": {
+            "mean_metric_degradation": -6.21699994218794e-06,
+            "std_metric_degradation": 5.7906641310878274e-05
+          },
+          "Fasting_Glucose": {
+            "mean_metric_degradation": 6.21699994233597e-06,
+            "std_metric_degradation": 0.0003440759849341695
+          },
+          "Hearing_L": {
+            "mean_metric_degradation": 3.730199965368275e-05,
+            "std_metric_degradation": 1.0057997196035478e-05
+          },
+          "Eyesight_R": {
+            "mean_metric_degradation": -0.00013855028442766315,
+            "std_metric_degradation": 0.00012791338439528416
+          },
+          "Sleep_Hours_Avg": {
+            "mean_metric_degradation": 9.591942768079804e-05,
+            "std_metric_degradation": 0.00033486842830812924
+          },
+          "Alcohol_Units_Week": {
+            "mean_metric_degradation": -0.0003015244972001119,
+            "std_metric_degradation": 0.000582782967072558
+          },
+          "Liver_Echo_Grade": {
+            "mean_metric_degradation": -2.2203571221623974e-06,
+            "std_metric_degradation": 1.0087363673636814e-05
+          },
+          "BMI": {
+            "mean_metric_degradation": 0.000738490778856904,
+            "std_metric_degradation": 0.0003104669080489489
+          },
+          "Hearing_R": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "HDL": {
+            "mean_metric_degradation": -8.037692782503214e-05,
+            "std_metric_degradation": 0.00019912184459855323
+          },
+          "Dental_Caries": {
+            "mean_metric_degradation": 5.9505570876120885e-05,
+            "std_metric_degradation": 0.0001495426593369886
+          },
+          "BP_Systolic": {
+            "mean_metric_degradation": 0.00184822526855218,
+            "std_metric_degradation": 0.0005822741667147797
+          },
+          "BP_Diastolic": {
+            "mean_metric_degradation": 0.0003894506392407848,
+            "std_metric_degradation": 0.0002413931580916006
+          },
+          "Eyesight_L": {
+            "mean_metric_degradation": -0.00023224935498615076,
+            "std_metric_degradation": 6.147462791050082e-05
+          },
+          "Height_cm": {
+            "mean_metric_degradation": 0.021115152161073663,
+            "std_metric_degradation": 0.0002797660547131496
+          },
+          "Exhaled_CO_ppm": {
+            "mean_metric_degradation": 0.005121475738157799,
+            "std_metric_degradation": 0.0008637294229477733
+          },
+          "Screening_Center": {
+            "mean_metric_degradation": 0.00020027621242609447,
+            "std_metric_degradation": 0.00011889094979753388
+          },
+          "Metabolic_Age_Gap": {
+            "mean_metric_degradation": 0.0005604181376533216,
+            "std_metric_degradation": 0.00034156771975589955
+          },
+          "Family_History_CVD": {
+            "mean_metric_degradation": 4.3518999595944706e-05,
+            "std_metric_degradation": 3.9279617365877476e-05
+          },
+          "Urine_Creatinine": {
+            "mean_metric_degradation": 0.0007251686361234855,
+            "std_metric_degradation": 0.00030464432531337294
+          },
+          "Urine_Cotinine_ng_mL": {
+            "mean_metric_degradation": 0.0029108881872561185,
+            "std_metric_degradation": 0.0004864479676549473
+          },
+          "Urine_EtG_ng_mL": {
+            "mean_metric_degradation": -0.0003348298540336951,
+            "std_metric_degradation": 0.00028744458940977346
+          },
+          "Workplace_ID": {
+            "mean_metric_degradation": 0.12026964016892483,
+            "std_metric_degradation": 0.001679022898226997
+          },
+          "POC_GGT": {
+            "mean_metric_degradation": -4.485121386913852e-05,
+            "std_metric_degradation": 0.00026825626628550577
+          },
+          "Eyesight_L_Blind": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Eyesight_R_Blind": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "LDL_Was_Missing": {
+            "mean_metric_degradation": -1.5098428431281619e-05,
+            "std_metric_degradation": 2.5147933752989702e-05
+          },
+          "Urine_Panel_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Triglyceride_Was_Missing": {
+            "mean_metric_degradation": 8.437357064572382e-06,
+            "std_metric_degradation": 3.275007938656011e-05
+          },
+          "Household_Smoke_Exposure_Was_Missing": {
+            "mean_metric_degradation": 0.00036635892516956314,
+            "std_metric_degradation": 5.563490139703874e-05
+          },
+          "AST_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "ALT_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Serum_Creatinine_Was_Missing": {
+            "mean_metric_degradation": 2.7976499740289817e-05,
+            "std_metric_degradation": 1.8793195022486063e-05
+          },
+          "Urine_Protein_Was_Missing": {
+            "mean_metric_degradation": -8.43735706446136e-06,
+            "std_metric_degradation": 1.7890071964993328e-05
+          },
+          "Eyesight_R_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Sleep_Hours_Avg_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Alcohol_Units_Week_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Liver_Echo_Grade_Was_Missing": {
+            "mean_metric_degradation": -1.554249985561788e-05,
+            "std_metric_degradation": 4.604016369638175e-05
+          },
+          "Eyesight_L_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Exhaled_CO_ppm_Was_Missing": {
+            "mean_metric_degradation": 0.0001660827127435797,
+            "std_metric_degradation": 0.0001645828390378995
+          },
+          "Family_History_CVD_Was_Missing": {
+            "mean_metric_degradation": 2.2647642646922428e-05,
+            "std_metric_degradation": 5.851136047322403e-05
+          },
+          "Urine_Creatinine_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Urine_Cotinine_ng_mL_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Urine_EtG_ng_mL_Was_Missing": {
+            "mean_metric_degradation": -2.6644285466466875e-06,
+            "std_metric_degradation": 1.0574122981002405e-05
+          },
+          "POC_GGT_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "AST_ALT_Ratio": {
+            "mean_metric_degradation": 0.00034637571106943543,
+            "std_metric_degradation": 9.905978415472711e-05
+          },
+          "POC_GGT_ALT_Ratio": {
+            "mean_metric_degradation": 9.014649916294637e-05,
+            "std_metric_degradation": 0.00018504994953255933
+          },
+          "Triglyceride_HDL_Ratio": {
+            "mean_metric_degradation": 0.00023047306928847267,
+            "std_metric_degradation": 0.00015377700364242118
+          },
+          "Urine_Cotinine_Creatinine_Ratio": {
+            "mean_metric_degradation": 0.004052151748087114,
+            "std_metric_degradation": 0.0008518052772746299
+          },
+          "Waist_Height_Ratio": {
+            "mean_metric_degradation": -7.415992788277019e-05,
+            "std_metric_degradation": 0.00025781128657127576
+          },
+          "Non_HDL_Cholesterol": {
+            "mean_metric_degradation": 0.00038234549644970234,
+            "std_metric_degradation": 8.204752855689298e-05
+          }
+        },
+        "full_feature_metrics": {
+          "pooled_oof": 0.9473656785355784,
+          "fold_mean": 0.9473109111972262,
+          "fold_std": 0.00374351181181388,
+          "fold_metrics": [
+            0.9472723685508533,
+            0.948229715377513,
+            0.9513878882004152,
+            0.9423536726601235
+          ],
+          "evaluated_rows": 7201
+        },
+        "reduced_feature_metrics": {
+          "pooled_oof": 0.9468666106403343,
+          "fold_mean": 0.946861994088841,
+          "fold_std": 0.0033519994628035477,
+          "fold_metrics": [
+            0.9470044178537815,
+            0.946862107796831,
+            0.9508942152200714,
+            0.9426872354846801
+          ],
+          "evaluated_rows": 7201
+        },
+        "reduced_feature_set_selected": false
+      },
+      "Gamma_GT": {
+        "full_feature_count": 63,
+        "reduced_feature_count": 41,
+        "dropped_features": [
+          "AST_Was_Missing",
+          "Exhaled_CO_ppm_Was_Missing",
+          "Eyesight_L_Blind",
+          "Eyesight_L_Was_Missing",
+          "Eyesight_R_Blind",
+          "Eyesight_R_Was_Missing",
+          "Family_History_CVD",
+          "Family_History_CVD_Was_Missing",
+          "Household_Smoke_Exposure",
+          "LDL_Was_Missing",
+          "Non_HDL_Cholesterol",
+          "Serum_Creatinine_Was_Missing",
+          "Sleep_Hours_Avg_Was_Missing",
+          "Triglyceride_Was_Missing",
+          "Urine_Cotinine_Creatinine_Ratio",
+          "Urine_Cotinine_ng_mL_Was_Missing",
+          "Urine_Creatinine_Was_Missing",
+          "Urine_EtG_ng_mL_Was_Missing",
+          "Urine_Panel_Missing",
+          "Urine_Protein",
+          "Urine_Protein_Was_Missing",
+          "Weight_kg"
+        ],
+        "permutation_importance": {
+          "Triglyceride": {
+            "mean_metric_degradation": 0.009697536626682657,
+            "std_metric_degradation": 0.0007835730891227771
+          },
+          "Household_Smoke_Exposure": {
+            "mean_metric_degradation": -0.00018748271249903933,
+            "std_metric_degradation": 4.354433505928753e-05
+          },
+          "Waist_cm": {
+            "mean_metric_degradation": 0.0014629588084643281,
+            "std_metric_degradation": 0.00020362682537205964
+          },
+          "Visit_Quarter": {
+            "mean_metric_degradation": 5.377510572118771e-05,
+            "std_metric_degradation": 4.856108192213393e-05
+          },
+          "Hemoglobin": {
+            "mean_metric_degradation": 0.020244069696775707,
+            "std_metric_degradation": 0.001474047811949595
+          },
+          "AST": {
+            "mean_metric_degradation": 0.0029886505089872784,
+            "std_metric_degradation": 0.0010771110016649257
+          },
+          "Cholesterol_Total": {
+            "mean_metric_degradation": 0.0007530445239854281,
+            "std_metric_degradation": 0.0004051218952374685
+          },
+          "Age": {
+            "mean_metric_degradation": 0.0016582564772529285,
+            "std_metric_degradation": 0.0006806175900852859
+          },
+          "LDL": {
+            "mean_metric_degradation": 0.0006921789497634038,
+            "std_metric_degradation": 7.248160871689608e-05
+          },
+          "Weight_kg": {
+            "mean_metric_degradation": -0.00011417663368917808,
+            "std_metric_degradation": 0.0001244498095886876
+          },
+          "ALT": {
+            "mean_metric_degradation": 0.03715284721434418,
+            "std_metric_degradation": 0.0018314774705321887
+          },
+          "Serum_Creatinine": {
+            "mean_metric_degradation": 0.0011750609387075246,
+            "std_metric_degradation": 0.00010325613721232348
+          },
+          "Urine_Protein": {
+            "mean_metric_degradation": -6.3692079787699045e-06,
+            "std_metric_degradation": 4.224042980471708e-05
+          },
+          "Fasting_Glucose": {
+            "mean_metric_degradation": 0.002545855577476793,
+            "std_metric_degradation": 0.00011122319098756265
+          },
+          "Hearing_L": {
+            "mean_metric_degradation": 2.2753002291338773e-06,
+            "std_metric_degradation": 4.191622378504677e-05
+          },
+          "Eyesight_R": {
+            "mean_metric_degradation": 0.00031035268772774033,
+            "std_metric_degradation": 0.00037302505903909975
+          },
+          "Sleep_Hours_Avg": {
+            "mean_metric_degradation": 0.00036113740197624145,
+            "std_metric_degradation": 0.0004124487861630378
+          },
+          "Alcohol_Units_Week": {
+            "mean_metric_degradation": 0.019319006892152196,
+            "std_metric_degradation": 0.000971049501203133
+          },
+          "Liver_Echo_Grade": {
+            "mean_metric_degradation": 0.011050376744283682,
+            "std_metric_degradation": 0.0013566486519109445
+          },
+          "BMI": {
+            "mean_metric_degradation": 0.00017190353372529646,
+            "std_metric_degradation": 6.923596402390214e-05
+          },
+          "Hearing_R": {
+            "mean_metric_degradation": 3.9082905545643566e-05,
+            "std_metric_degradation": 6.908147477370662e-05
+          },
+          "HDL": {
+            "mean_metric_degradation": 0.001786137190598669,
+            "std_metric_degradation": 0.0006075183353928829
+          },
+          "Dental_Caries": {
+            "mean_metric_degradation": 0.0001347767846208899,
+            "std_metric_degradation": 4.618116570468788e-05
+          },
+          "BP_Systolic": {
+            "mean_metric_degradation": 3.543359526762361e-05,
+            "std_metric_degradation": 9.645850778670926e-05
+          },
+          "BP_Diastolic": {
+            "mean_metric_degradation": 0.0009415925092581268,
+            "std_metric_degradation": 0.0001877383008247986
+          },
+          "Eyesight_L": {
+            "mean_metric_degradation": 9.272475041181376e-05,
+            "std_metric_degradation": 0.00011708989543922134
+          },
+          "Height_cm": {
+            "mean_metric_degradation": 0.0008553094077753398,
+            "std_metric_degradation": 1.396523012085159e-05
+          },
+          "Exhaled_CO_ppm": {
+            "mean_metric_degradation": 0.0008541790345688768,
+            "std_metric_degradation": 0.0007056226309657152
+          },
+          "Screening_Center": {
+            "mean_metric_degradation": 0.00033294301430044265,
+            "std_metric_degradation": 8.670636358540219e-05
+          },
+          "Metabolic_Age_Gap": {
+            "mean_metric_degradation": 0.002839827956678439,
+            "std_metric_degradation": 0.0005726645178444096
+          },
+          "Family_History_CVD": {
+            "mean_metric_degradation": -2.1522260707766232e-05,
+            "std_metric_degradation": 0.0003771267307569119
+          },
+          "Urine_Creatinine": {
+            "mean_metric_degradation": 0.0033524077032114352,
+            "std_metric_degradation": 0.000506007754606324
+          },
+          "Urine_Cotinine_ng_mL": {
+            "mean_metric_degradation": 0.0003448280062045006,
+            "std_metric_degradation": 0.00011129670747127671
+          },
+          "Urine_EtG_ng_mL": {
+            "mean_metric_degradation": 0.016747037469508935,
+            "std_metric_degradation": 0.0007716721162937082
+          },
+          "Workplace_ID": {
+            "mean_metric_degradation": 0.027396630360432845,
+            "std_metric_degradation": 0.001413828862384635
+          },
+          "POC_GGT": {
+            "mean_metric_degradation": 0.027716868509780446,
+            "std_metric_degradation": 0.001627912995578868
+          },
+          "Eyesight_L_Blind": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Eyesight_R_Blind": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "LDL_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Urine_Panel_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Triglyceride_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Household_Smoke_Exposure_Was_Missing": {
+            "mean_metric_degradation": 1.911152138528438e-05,
+            "std_metric_degradation": 1.9398251352549732e-05
+          },
+          "AST_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "ALT_Was_Missing": {
+            "mean_metric_degradation": 6.0875861601028536e-05,
+            "std_metric_degradation": 2.131106829649217e-05
+          },
+          "Serum_Creatinine_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Urine_Protein_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Eyesight_R_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Sleep_Hours_Avg_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Alcohol_Units_Week_Was_Missing": {
+            "mean_metric_degradation": 0.00010913354041310515,
+            "std_metric_degradation": 5.3980237091936756e-05
+          },
+          "Liver_Echo_Grade_Was_Missing": {
+            "mean_metric_degradation": 0.00012368982488956495,
+            "std_metric_degradation": 0.00012190129793544964
+          },
+          "Eyesight_L_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Exhaled_CO_ppm_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Family_History_CVD_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Urine_Creatinine_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Urine_Cotinine_ng_mL_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "Urine_EtG_ng_mL_Was_Missing": {
+            "mean_metric_degradation": 0.0,
+            "std_metric_degradation": 0.0
+          },
+          "POC_GGT_Was_Missing": {
+            "mean_metric_degradation": 4.1540618414770414e-05,
+            "std_metric_degradation": 3.363108078434447e-05
+          },
+          "AST_ALT_Ratio": {
+            "mean_metric_degradation": 0.0010744699536934614,
+            "std_metric_degradation": 0.0006223776083459599
+          },
+          "POC_GGT_ALT_Ratio": {
+            "mean_metric_degradation": 0.003190349760381739,
+            "std_metric_degradation": 0.00018947622794455337
+          },
+          "Triglyceride_HDL_Ratio": {
+            "mean_metric_degradation": 0.0001527569241520458,
+            "std_metric_degradation": 0.0002820286769849758
+          },
+          "Urine_Cotinine_Creatinine_Ratio": {
+            "mean_metric_degradation": -0.00016973093730560107,
+            "std_metric_degradation": 0.00014330268382011747
+          },
+          "Waist_Height_Ratio": {
+            "mean_metric_degradation": 0.00026839156065607456,
+            "std_metric_degradation": 0.0002960412779140227
+          },
+          "Non_HDL_Cholesterol": {
+            "mean_metric_degradation": -0.00022048335079283277,
+            "std_metric_degradation": 8.685137013565136e-05
+          }
+        },
+        "full_feature_metrics": {
+          "pooled_oof": 0.286184913212276,
+          "fold_mean": 0.2861355762216241,
+          "fold_std": 0.006083529331889588,
+          "fold_metrics": [
+            0.29215532824975615,
+            0.287705382144204,
+            0.28700585819643326,
+            0.27767573629610315
+          ],
+          "evaluated_rows": 7201
+        },
+        "reduced_feature_metrics": {
+          "pooled_oof": 0.28575338753067925,
+          "fold_mean": 0.28570689508888,
+          "fold_std": 0.005897042039763758,
+          "fold_metrics": [
+            0.29182740920258643,
+            0.2867018611762858,
+            0.28665246680735473,
+            0.277645843169293
+          ],
+          "evaluated_rows": 7201
+        },
+        "reduced_feature_set_selected": true
+      }
+    }
+  },
+  "leaderboard_feedback": {
+    "reported_at": "2026-10-10T12:11:54.979+03:00",
+    "user_reported_current_score": 0.81446,
+    "user_reported_top_score": 0.86495,
+    "score_gap": 0.05049,
+    "interpretation": "Leaderboard scores were reported by the user. Per-target leaderboard metrics are unavailable; do not treat inferred metrics as measured validation results.",
+    "rough_implied_gamma_gt_rmsle_if_smoking_auc_matches_saved_oof": {
+      "current_submission": 0.13462,
+      "top_score": 0.08371
+    }
+  },
+  "ggt_two_stage_candidate": {
+    "created_utc": "2026-10-10T10:28:27.152935+00:00",
+    "method": "Fold-local CatBoost primary and POC-free fallback; replace known-batch rows with training-fold mean Gamma_GT/POC_GGT multipliers when POC_GGT > 3.",
+    "fallback_features_excluded": [
+      "POC_GGT",
+      "POC_GGT_Was_Missing",
+      "POC_GGT_ALT_Ratio"
+    ],
+    "selected_feature_drops": [
+      "AST_Was_Missing",
+      "Exhaled_CO_ppm_Was_Missing",
+      "Eyesight_L_Blind",
+      "Eyesight_L_Was_Missing",
+      "Eyesight_R_Blind",
+      "Eyesight_R_Was_Missing",
+      "Family_History_CVD",
+      "Family_History_CVD_Was_Missing",
+      "Household_Smoke_Exposure",
+      "LDL_Was_Missing",
+      "Non_HDL_Cholesterol",
+      "Serum_Creatinine_Was_Missing",
+      "Sleep_Hours_Avg_Was_Missing",
+      "Triglyceride_Was_Missing",
+      "Urine_Cotinine_Creatinine_Ratio",
+      "Urine_Cotinine_ng_mL_Was_Missing",
+      "Urine_Creatinine_Was_Missing",
+      "Urine_EtG_ng_mL_Was_Missing",
+      "Urine_Panel_Missing",
+      "Urine_Protein",
+      "Urine_Protein_Was_Missing",
+      "Weight_kg"
+    ],
+    "model_params": {
+      "iterations": 715,
+      "depth": 6,
+      "learning_rate": 0.04,
+      "l2_leaf_reg": 3.0
+    },
+    "cross_validation": {
+      "pooled_oof_rmsle": 0.13056293657098492,
+      "fold_mean_rmsle": 0.1305047341894147,
+      "fold_std_rmsle": 0.00433865089060179,
+      "fold_rmsle": [
+        0.13097406030476585,
+        0.13475896585720815,
+        0.12364390356567188,
+        0.12962121184683026,
+        0.13352552937259718
+      ],
+      "fold_details": [
+        {
+          "fold": 1,
+          "valid_rows": 1801,
+          "missing_poc_fallback_rows": 142,
+          "batch_ratio_rows": 1591,
+          "primary_model_rows": 68,
+          "rmsle": 0.13097406030476585
+        },
+        {
+          "fold": 2,
+          "valid_rows": 1801,
+          "missing_poc_fallback_rows": 134,
+          "batch_ratio_rows": 1602,
+          "primary_model_rows": 65,
+          "rmsle": 0.13475896585720815
+        },
+        {
+          "fold": 3,
+          "valid_rows": 1800,
+          "missing_poc_fallback_rows": 131,
+          "batch_ratio_rows": 1617,
+          "primary_model_rows": 52,
+          "rmsle": 0.12364390356567188
+        },
+        {
+          "fold": 4,
+          "valid_rows": 1800,
+          "missing_poc_fallback_rows": 142,
+          "batch_ratio_rows": 1596,
+          "primary_model_rows": 62,
+          "rmsle": 0.12962121184683026
+        },
+        {
+          "fold": 5,
+          "valid_rows": 1800,
+          "missing_poc_fallback_rows": 163,
+          "batch_ratio_rows": 1581,
+          "primary_model_rows": 56,
+          "rmsle": 0.13352552937259718
+        }
+      ],
+      "missing_poc_oof_rmsle": 0.290975289186647,
+      "batch_ratio_oof_rmsle": 0.09588988450534049,
+      "primary_oof_rmsle": 0.25519136708459483,
+      "missing_poc_rows": 712,
+      "batch_ratio_rows": 7987
+    },
+    "comparison": {
+      "hgb_tuned_pooled_oof_rmsle": 0.13620832686340345,
+      "delta_rmsle_vs_hgb_tuned": -0.005645390292418534,
+      "independent_split_checks": [
+        {
+          "random_state": 7,
+          "two_stage_rmsle": 0.13149615071435392,
+          "hgb_tuned_rmsle": 0.1401723739342677
+        },
+        {
+          "random_state": 123,
+          "two_stage_rmsle": 0.13112900721739648,
+          "hgb_tuned_rmsle": 0.13827713357843724
+        }
+      ],
+      "selection_note": "Exploratory fold comparisons. The leaderboard score for this candidate is unknown until submitted."
+    },
+    "submission": {
+      "file": "C:\\Users\\\u064a\u062b\u0645\u0645\\Desktop\\AI_Hackathon\\dsc-modeling-hackathon-ml-arena\\submission_two_stage_candidate.csv",
+      "rows": 6399,
+      "batch_ratio_rows": 5653,
+      "missing_poc_fallback_rows": 526,
+      "primary_model_rows": 220,
+      "gamma_gt_min": 5.693275816696914,
+      "gamma_gt_max": 559.6880796296296,
+      "smoking_predictions_preserved": true
+    }
+  }
+}
